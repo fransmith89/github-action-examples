@@ -1,0 +1,34 @@
+name: ex3-branch-checks-multi-job
+on: [push]
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+            python-version: '3.8'
+            architecture: 'x64'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: lint
+        run: pylint-fail-under --fail_under 10.0 tests/
+  test:
+    name: test
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+            python-version: '3.8'
+            architecture: 'x64'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: tests
+        run: pytest -v tests/
