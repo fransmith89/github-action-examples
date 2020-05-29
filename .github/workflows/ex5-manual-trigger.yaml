@@ -1,0 +1,12 @@
+name: ex5-manual-trigger
+on:
+  repository_dispatch:
+    types: trigger
+
+jobs:
+  manual-trigger:
+    name: manual-trigger
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Print
+        run: echo "I was triggered manually"
