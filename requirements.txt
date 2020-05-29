@@ -1,0 +1,3 @@
+pylint==2.5.2
+pylint-fail-under==0.3.0
+pytest==5.4.2
